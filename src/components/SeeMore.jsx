@@ -5,7 +5,7 @@ const SeeMore = props => {
             <button type="button"
                     onClick={props.seeMoreFunction}
                     className={props.buttonVisible? 'see-more show' : 'see-more hide'}>
-                NOT ENOUGH!!!<span>Load 4 more</span>
+                NOT ENOUGH!!!<span>Load 8 more</span>
             </button>
         )
 }

@@ -29,9 +29,9 @@ body{
 }
 
 .search-wrapper{
-    width: 25%;
     input{
-        width: 70%;
+        width: 20%;
+        min-width: 220px;
         height: 37px;
         margin: 0;
         border: 1px solid #ff852e;
@@ -100,5 +100,19 @@ body{
         display: block;
         color: $white-color;
         font-weight: 400;
+    }
+}
+
+.modal{
+    position: absolute;
+    top: 5%;
+    text-align: center;
+    width: 100%;
+    .modal-text{
+        display: inline-block;
+        background: #e4e4e4;
+        padding: 10px 40px;
+        border-radius: 5px;
+        border-bottom: 2px solid;
     }
 }

@@ -3,6 +3,7 @@ import React from 'react';
 import SearchInput from '../components/SearchInput';
 import Gifs from '../components/Gifs';
 import SeeMore from '../components/SeeMore';
+import Modal from '../components/Modal';
 
 
 class Home extends React.Component {
@@ -13,7 +14,7 @@ class Home extends React.Component {
         var giphyKey = 'ql7VvIHUsxHV858NWtK5NpbUAFwvYzl6';
         var giphySearch = 'q=';
         var giphyLimit = 'limit=';
-        var giphyLimitNum = 4;
+        var giphyLimitNum = 8;
 
         this.state = {
             apiGifs,
@@ -22,7 +23,8 @@ class Home extends React.Component {
             giphyLimitNum,
             giphyMainUrl: `${giphyUrlStart}${giphyKey}&${giphyLimit}`,
             giphySearchTerm: '',
-            buttonVisible: false
+            buttonVisible: false,
+            showModal: false
         };
     }
 
@@ -32,11 +34,10 @@ class Home extends React.Component {
 
     getValueFromInputFunction = valueFromInput => {
         this.setState({ giphyUrl: '', giphyUrl: this.state.giphyMainUrl+this.state.giphyLimitNum+'&q='+valueFromInput, giphySearchTerm: valueFromInput }, () => {
-            console.log(this.state.giphyUrl);
             getJSON(this.state.giphyUrl,
                 function (err, data) {
                     if (err !== null) {
-                        console.log('err');
+
                     } else {
                         apiGifs = data.data;
                     }
@@ -47,15 +48,13 @@ class Home extends React.Component {
     }
 
     seeMoreFunction = () => {
-        console.log('aaa');
-        var currLimit = this.state.giphyLimitNum + 4;
+        var currLimit = this.state.giphyLimitNum + 8;
         this.setState({ giphyLimitNum: currLimit }, () => {
             this.getValueFromInputFunction(this.state.giphySearchTerm);
         });
     }
 
     buttonVisibleFunction = () => {
-        console.log('inside button function');
         if (this.state.giphySearchTerm == ''){
             this.setState({ buttonVisible: false })
         } else {
@@ -70,19 +69,29 @@ class Home extends React.Component {
         aux.select();
         document.execCommand("copy");
         document.body.removeChild(aux);
-
+        this.setState({showModal: true}, () => {
+            setTimeout(() => {
+                this.setState({showModal: false})
+            }, 800);
+        })
     }
 
     render(){
         return (
             <div>
-                <h2>Search some gifs, dog!</h2>
+                <h2>Search some gifs, man!</h2>
                 <SearchInput getValueFromInput={ this.getValueFromInputFunction }/>
                 <ul className="gif-list">
                     {this.state.gifArray.map(gif => <Gifs key={gif.id} gifSource={gif.images.fixed_height.url} gifSourceCopy={e => this.gifSourceCopyFunction(gif.images.downsized_large.url) }/>) }
                 </ul>
-                <SeeMore seeMoreFunction={ e => this.seeMoreFunction() } buttonVisible={ this.state.buttonVisible } />
-                
+                <SeeMore seeMoreFunction={ () => this.seeMoreFunction() } buttonVisible={ this.state.buttonVisible } />
+                { this.state.showModal &&
+                    <Modal>
+                        <div className="modal">
+                            <p className="modal-text">Gif URL copied to clipboard</p>
+                        </div>
+                    </Modal>
+                }
             </div>
         )
     }
