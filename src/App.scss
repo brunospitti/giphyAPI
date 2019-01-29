@@ -25,7 +25,13 @@ $white-color: #fff;
 }
 
 body{
-    margin: 25px;
+    margin: 0;
+    padding: 0;
+}
+.content-holder{
+    padding: 0 25px 100px;
+    max-width: 1220px;
+    margin: 0 auto;
 }
 
 .search-wrapper{
@@ -38,6 +44,10 @@ body{
         border-radius: 6px 0 0 6px;
         padding: 4px 10px;
         outline: none !important;
+        @media only screen and (max-width: 767px) {
+            width: 59%;
+            min-width: 160px;
+        }
     }
     button{
         background: $primary-color;
@@ -60,6 +70,10 @@ body{
         height: 200px;
         margin: 3% 1%;
         position: relative;
+        @media only screen and (max-width: 767px) {
+            width: 100%;
+            margin-bottom: 15%;
+        }
         .gif{
             height: 100%;
             width: 100%;
@@ -110,9 +124,30 @@ body{
     width: 100%;
     .modal-text{
         display: inline-block;
-        background: #e4e4e4;
+        background: lighten($grey-color, 50%);
         padding: 10px 40px;
         border-radius: 5px;
         border-bottom: 2px solid;
+    }
+}
+
+.footer{
+    background-color: $primary-color;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    z-index: 10;
+    padding: 20px;
+    text-align: right;
+    @media only screen and (max-width: 767px) {
+        padding: 10px 20px;
+    }
+    .footer-link{
+        font-size: 13px;
+        color: $white-color;
+        text-decoration: none;
+        &:hover {
+            text-decoration: underline;
+        }
     }
 }

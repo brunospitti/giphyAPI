@@ -4,6 +4,7 @@ import SearchInput from '../components/SearchInput';
 import Gifs from '../components/Gifs';
 import SeeMore from '../components/SeeMore';
 import Modal from '../components/Modal';
+import { Footer } from '../components/Footer';
 
 
 class Home extends React.Component {
@@ -78,24 +79,26 @@ class Home extends React.Component {
 
     render(){
         return (
-            <div>
-                <h2>Search some gifs, man!</h2>
-                <SearchInput getValueFromInput={ this.getValueFromInputFunction }/>
-                <ul className="gif-list">
-                    {this.state.gifArray.map(gif => <Gifs key={gif.id} gifSource={gif.images.fixed_height.url} gifSourceCopy={e => this.gifSourceCopyFunction(gif.images.downsized_large.url) }/>) }
-                </ul>
-                <SeeMore seeMoreFunction={ () => this.seeMoreFunction() } buttonVisible={ this.state.buttonVisible } />
-                { this.state.showModal &&
-                    <Modal>
-                        <div className="modal">
-                            <p className="modal-text">Gif URL copied to clipboard</p>
-                        </div>
-                    </Modal>
-                }
-            </div>
+            <React.Fragment>
+                <div className="content-holder">
+                    <h2>Search some gifs, man!</h2>
+                    <SearchInput getValueFromInput={ this.getValueFromInputFunction }/>
+                    <ul className="gif-list">
+                        {this.state.gifArray.map(gif => <Gifs key={gif.id} gifSource={gif.images.fixed_height.url} gifSourceCopy={e => this.gifSourceCopyFunction(gif.images.downsized_large.url) }/>) }
+                    </ul>
+                    <SeeMore seeMoreFunction={ () => this.seeMoreFunction() } buttonVisible={ this.state.buttonVisible } />
+                    { this.state.showModal &&
+                        <Modal>
+                            <div className="modal">
+                                <p className="modal-text">Gif URL copied to clipboard</p>
+                            </div>
+                        </Modal>
+                    }
+                </div>
+                <Footer />
+            </React.Fragment>
         )
     }
-    
 };
 
 export default Home;
