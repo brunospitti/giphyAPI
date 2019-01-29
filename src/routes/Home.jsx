@@ -5,6 +5,7 @@ import Gifs from '../components/Gifs';
 import SeeMore from '../components/SeeMore';
 import Modal from '../components/Modal';
 import { Footer } from '../components/Footer';
+import {getJSON} from "../assets/js/utils"
 
 
 class Home extends React.Component {
@@ -18,7 +19,6 @@ class Home extends React.Component {
         var giphyLimitNum = 8;
 
         this.state = {
-            apiGifs,
             giphyUrl: '',
             gifArray: [],
             giphyLimitNum,
@@ -40,9 +40,9 @@ class Home extends React.Component {
                     if (err !== null) {
 
                     } else {
-                        apiGifs = data.data;
+                        let apiGifs = data.data;
+                        this.setState({ gifArray: apiGifs });
                     }
-                    this.setState({ gifArray: apiGifs });
                     this.buttonVisibleFunction();
                 }.bind(this));
         });
