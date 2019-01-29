@@ -12,7 +12,7 @@ class Home extends React.Component {
     constructor(props){
         super(props);
 
-        var giphyUrlStart = 'http://api.giphy.com/v1/gifs/search?api_key=';
+        var giphyUrlStart = 'https://api.giphy.com/v1/gifs/search?api_key=';
         var giphyKey = 'ql7VvIHUsxHV858NWtK5NpbUAFwvYzl6';
         var giphySearch = 'q=';
         var giphyLimit = 'limit=';

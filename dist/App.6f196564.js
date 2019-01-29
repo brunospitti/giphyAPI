@@ -25601,7 +25601,7 @@ function (_React$Component) {
       });
     };
 
-    var giphyUrlStart = 'http://api.giphy.com/v1/gifs/search?api_key=';
+    var giphyUrlStart = 'https://api.giphy.com/v1/gifs/search?api_key=';
     var giphyKey = 'ql7VvIHUsxHV858NWtK5NpbUAFwvYzl6';
     var giphySearch = 'q=';
     var giphyLimit = 'limit=';
@@ -25746,7 +25746,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56676" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61803" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
